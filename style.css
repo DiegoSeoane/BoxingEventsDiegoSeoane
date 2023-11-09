@@ -158,3 +158,19 @@ nav a {
     border: none;
     margin: 3px;
 }
+.modifyForm{
+    text-align: center;
+}
+.modifyForm button{
+    margin: 1em;
+    background-color: #333;
+    color: white;
+    border: none;
+    border-radius: 20px;
+    padding: 0.5em;
+    padding-left: 1em;
+    padding-right: 1em;
+}
+.modifyForm button:hover{
+    opacity: 80%;
+}

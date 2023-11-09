@@ -42,11 +42,11 @@ include('classes.php');
             $box = $query->fetchObject('Boxer');
             return $box;
         }
-        function deleteBoxer($dni){
+        function deleteBoxer($dni){            
+            echo $dni;
             $query = $this->conn->prepare('delete from Boxer where dni = ?');
             $query->execute([$dni]);            
             $deletedRows= $query->rowCount();
-            echo $deletedRows;
             return $deletedRows;
         }
         function updateBoxer(Boxer $boxer){
