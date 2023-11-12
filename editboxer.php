@@ -6,7 +6,7 @@
     <form method="post" action="index.php?load=editboxer" class="dniInp">
         <label for="dni">Insert Boxer's DNI</label> <br> <br>
         <input type="text" name="dni" id="iddni">
-        <button type="submit" name="submit">Buscar</button>
+        <button type="submit" name="submit">Search</button>
         <button type="submit" name="delete">Delete</button>
     </form>
     <?php
@@ -33,6 +33,9 @@
         $boxer = $oper->getBoxer($_POST['dni']);
     }
     if (isset($_POST['submit'])) {
+
+    $dniboxer = $_POST['dni'];
+    setcookie('dniboxer',$dniboxer);
         $boxer = $oper->getBoxer($_POST['dni']);
         echo '<br><table class="tabbox"> 
             <thead>

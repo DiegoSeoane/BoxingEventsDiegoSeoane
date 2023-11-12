@@ -3,17 +3,17 @@
     <thead>
         <tr>
             <th>Name</th>
-            <th>Fights</th>
+            <th>Number of<br>Fights</th>
             <th>Spectators</th>
         </tr>
     </thead>
     <tbody>
-        <?php        
+        <?php                    
             $eventList = $oper->eventList();            
             foreach ($eventList as $event) {
                 echo '<tr>
                 <td>' . $event->getEventName() .'</td>
-                <td>' . $event->getFight() . '</td>
+                <td>' . $event->getFights() . '</td>
                 <td>' . $event->getSpectators() . '</td>
                 </tr>';
             }

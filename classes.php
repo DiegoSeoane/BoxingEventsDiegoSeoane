@@ -106,62 +106,88 @@
     }
     class Event{
         private $eventID;
-        private $eventName;
-        private Fight $fight;
+        private $eventname;
+        private $fight;
         private $spectators;
-
-        public function getEventName() {
-                return $this->eventName;
-        }
-
-        public function setEventName($eventName): self {
-                $this->eventName = $eventName;
-                return $this;
-        }
-
-        /**
-         * Get the value of fight
-         *
-         * @return Fight
-         */
-        public function getFight(): Fight {
-                return $this->fight;
-        }
-
-        /**
-         * Set the value of fight
-         *
-         * @param Fight $fight
-         *
-         * @return self
-         */
-        public function setFight(Fight $fight): self {
-                $this->fight = $fight;
-                return $this;
-        }
-
-        public function getSpectators() {
-                return $this->spectators;
-        }
-
-        public function setSpectators($spectators): self {
-                $this->spectators = $spectators;
-                return $this;
-        }
 
         /**
          * Get the value of eventID
-         */
-        public function getEventID() {
+         */ 
+        public function getEventID()
+        {
                 return $this->eventID;
         }
 
         /**
          * Set the value of eventID
-         */
-        public function setEventID($eventID): self {
+         *
+         * @return  self
+         */ 
+        public function setEventID($eventID)
+        {
                 $this->eventID = $eventID;
+
                 return $this;
         }
-    }
+
+        /**
+         * Get the value of eventname
+         */ 
+        public function getEventname()
+        {
+                return $this->eventname;
+        }
+
+        /**
+         * Set the value of eventname
+         *
+         * @return  self
+         */ 
+        public function setEventname($eventname)
+        {
+                $this->eventname = $eventname;
+
+                return $this;
+        }
+
+        /**
+         * Get the value of spectators
+         */ 
+        public function getSpectators()
+        {
+                return $this->spectators;
+        }
+
+        /**
+         * Set the value of spectators
+         *
+         * @return  self
+         */ 
+        public function setSpectators($spectators)
+        {
+                $this->spectators = $spectators;
+
+                return $this;
+        }
+
+        /**
+         * Get the value of fights
+         */ 
+        public function getFights()
+        {
+                return $this->fight;
+        }
+
+        /**
+         * Set the value of fights
+         *
+         * @return  self
+         */ 
+        public function setFights($fight)
+        {
+                $this->fight = $fight;
+
+                return $this;
+        }
+}
 ?>

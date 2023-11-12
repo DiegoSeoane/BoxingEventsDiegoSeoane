@@ -20,7 +20,7 @@
     </header>
 
     <?php
-    include_once('operations.php');
+    include('operations.php');
     $oper = new Operations();
 
     try {
@@ -28,6 +28,7 @@
             $load = $_GET['load'];
             switch ($load) {
                 case 'edit':
+
                     include('edit.php');
                     break;
                 case 'boxers':
@@ -54,11 +55,20 @@
                 case 'addboxer':
                     include('addboxer.php');
                     break;
+                case 'editfight':
+                    include('editfight.php');
+                    break;
+                case 'addfight':
+                    include('addfight.php');
+                    break;
             }
         }
     } catch (PDOException $ex) {
-        echo $ex->getMessage();
+        error_log('PDO Error: ' . $ex->getMessage(), 0);
+        echo 'Error';
     } catch (Exception $ex) {
+        error_log('General Error: ' . $ex->getMessage(), 0);
+        echo 'Error';
         echo $ex->getMessage();
     } finally {
         $oper->closeConnection();

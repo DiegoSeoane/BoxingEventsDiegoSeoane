@@ -51,7 +51,7 @@ include('classes.php');
         }
         function updateBoxer(Boxer $boxer){
             $query = $this->conn->prepare('update Boxer set name = ?, surname = ?, wins = ?, losses = ?, draws = ? where dni = ?');
-            $query->excecute([$boxer->getName(),$boxer->getSurname(),$boxer->getWins(),$boxer->getLosses(),$boxer->getDraws(),$boxer->getDni()]);            
+            $query->execute([$boxer->getName(),$boxer->getSurname(),$boxer->getWins(),$boxer->getLosses(),$boxer->getDraws(),$boxer->getDni()]);            
             $updated= $query->rowCount();
             return $updated;
         }
@@ -114,9 +114,9 @@ include('classes.php');
             $statement = $this->conn->prepare('insert into Event(eventname, fight, spectators) 
             values(?,?,?)');
             $name= $event->getEventName();
-            $fight= $event->getFight();
+            $fights= $event->getFights();
             $spectators= $event->getSpectators();
-            $statement->execute([$name,$fight,$spectators]);
+            $statement->execute([$name,$fights,$spectators]);
             $numRows = $statement->rowCount();
             $this->conn->commit();
             return $numRows;
@@ -135,17 +135,17 @@ include('classes.php');
         }
         function updateEvent(Event $event){
             $query = $this->conn->prepare('update Event set eventname = ?, fight = ?, spectators = ? where eventID = ?');
-            $query->excecute([$event->getEventName(),$event->getFight(),$event->getSpectators(), $event->getEventID()]);            
+            $query->excecute([$event->getEventName(),$event->getFights(),$event->getSpectators(), $event->getEventID()]);            
             $updated= $query->rowCount();
             return $updated;
         }
         function eventList(){            
-            $query = $this->conn->prepare('select eventID, eventname, fight ,spectators from Event');
+            $query = $this->conn->prepare('select eventID, eventname, fight ,spectators from Event');            
             $query->execute();
             $eventList = array();
             while ($event = $query->fetchObject('Event')) {
-                $eventList[]=$event;
-            }
+                $eventList[]=$event;                
+            }            
             return $eventList;
         }  
     }
