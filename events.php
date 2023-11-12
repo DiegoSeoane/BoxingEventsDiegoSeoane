@@ -20,3 +20,6 @@
         ?>
     </tbody>
 </table>
+<div class="editInList">
+<a href="index.php?load=editevent">Edit Events</a>
+</div>

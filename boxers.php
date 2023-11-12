@@ -26,5 +26,8 @@
                 </tr>';
             }
         ?>
-    </tbody>
+    </tbody>    
 </table>
+<div class="editInList">
+<a href="index.php?load=editboxer">Edit Boxers</a>
+</div>

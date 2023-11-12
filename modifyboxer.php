@@ -39,7 +39,7 @@
         $boxer->setDraws($_POST['draws']);
         $oper->updateBoxer($boxer);
     } catch (PDOException $th) {
-        //throw $th;
+        $th->getMessage();
     }
     }
 }else{

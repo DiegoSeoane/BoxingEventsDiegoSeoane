@@ -12,10 +12,10 @@
     <header>
         <nav>
             <a href="index.php"><img src="https://plaam.s3.eu-central-1.amazonaws.com/despliegues/fgboxeo/logos/fgboxeo-logo.png" alt="logoFederacion" class="logoFederacion"></a>
-            <a href="index.php?load=edit" class="headernav">Edit</a>
             <a href="index.php?load=boxers" class="headernav">Boxer List</a>
             <a href="index.php?load=fights" class="headernav">Fight List</a>
             <a href="index.php?load=events" class="headernav">Event List</a>
+            <a href="index.php?load=edit" class="headernav">Edit</a>
         </nav>
     </header>
 
@@ -60,6 +60,9 @@
                     break;
                 case 'addfight':
                     include('addfight.php');
+                    break;
+                case 'modifyfight':
+                    include('modifyfight.php');
                     break;
             }
         }

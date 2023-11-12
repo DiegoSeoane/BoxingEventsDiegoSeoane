@@ -24,7 +24,7 @@
         if ($numRow == 1) {
             echo '<p class="success">Eliminated</p>';
         } else {
-            echo '<p class="success">Error</p>';
+            echo '<p class="success">DNI not found</p>';
         }
     }
 

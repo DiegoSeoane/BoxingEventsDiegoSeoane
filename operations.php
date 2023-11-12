@@ -93,7 +93,7 @@ include('classes.php');
         }
         function updateFight(Fight $fight){
             $query = $this->conn->prepare('update Fight set blueCorner = ?, redCorner = ?, winner = ? where fightID = ?');
-            $query->excecute([$fight->getBlueCorner(),$fight->getRedCorner(),$fight->getWinner(), $fight->getFightID()]);            
+            $query->execute([$fight->getBlueCorner(),$fight->getRedCorner(),$fight->getWinner(), $fight->getFightID()]);            
             $updated= $query->rowCount();
             return $updated;
         }
@@ -135,7 +135,7 @@ include('classes.php');
         }
         function updateEvent(Event $event){
             $query = $this->conn->prepare('update Event set eventname = ?, fight = ?, spectators = ? where eventID = ?');
-            $query->excecute([$event->getEventName(),$event->getFights(),$event->getSpectators(), $event->getEventID()]);            
+            $query->execute([$event->getEventName(),$event->getFights(),$event->getSpectators(), $event->getEventID()]);            
             $updated= $query->rowCount();
             return $updated;
         }

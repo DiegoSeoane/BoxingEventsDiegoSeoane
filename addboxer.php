@@ -8,7 +8,7 @@
 
     <h1>Add a new boxer</h1><br>
     <label for="idDNI">DNI</label><br>
-    <input type="text" id="idDNi" name="dni">
+    <input type="text" id="idDNI" name="dni">
     <br>
     <br>
     <label for="idName">Name</label><br>

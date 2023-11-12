@@ -25,3 +25,6 @@
         ?>
     </tbody>
 </table>
+<div class="editInList">
+<a href="index.php?load=editfight">Edit Fights</a>
+</div>
