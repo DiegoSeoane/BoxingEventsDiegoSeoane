@@ -5,6 +5,7 @@
             <th>Name</th>
             <th>Number of<br>Fights</th>
             <th>Spectators</th>
+            <th>ID</th>
         </tr>
     </thead>
     <tbody>
@@ -15,6 +16,7 @@
                 <td>' . $event->getEventName() .'</td>
                 <td>' . $event->getFights() . '</td>
                 <td>' . $event->getSpectators() . '</td>
+                <td>' . $event->getEventID() . '</td>
                 </tr>';
             }
         ?>

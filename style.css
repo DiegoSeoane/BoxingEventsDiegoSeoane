@@ -1,5 +1,22 @@
+html{       
+    width: 100%;
+    min-height: 100%;
+    position: relative;   
+    margin: 0;
+    padding: 0;        
+}
 body {
-    font-family: Montserrat, sans-serif;
+    font-family: Montserrat, sans-serif;    
+    margin: 0;
+    padding: 0;        
+    margin-bottom: 200px;    
+}
+body>img{    
+    position: fixed;
+    z-index: -10;
+    left: 40%;
+    top: 10%;    
+    opacity: 0.3;
 }
 
 .logoFederacion {
@@ -31,7 +48,7 @@ nav {
     flex-direction: row;
     display: flex;
     justify-content: center;
-
+    padding: 0.5em;
 }
 
 nav a {
@@ -39,15 +56,6 @@ nav a {
     text-decoration: none;
 }
 
-@keyframes navcolor {
-    0% {
-        color: black;
-    }
-
-    100% {
-        color: #4099f7;
-    }
-}
 
 .headernav {
     margin-right: 5em;
@@ -83,8 +91,8 @@ nav a {
 }
 
 .editButtons>a:hover {
-    animation: navcolor 500ms;
-    color: #4099f7;
+    animation: editButtonscolor 500ms;
+    color: #035ec0;    
     transition: transform 0.2s ease-in-out;
     transform: scale(1.02);
 }
@@ -148,12 +156,12 @@ nav a {
     margin-top: 2em;
 }
 .dniInp button:hover{
-    opacity: 80%;
+    background-color: #222;
 }
 .boxerMenu {
     text-align: center;
     margin: auto;
-    margin-top: 3em;
+    margin-top: 0;
     background-color: #333;
     padding: 1em;
     display: flex;
@@ -168,7 +176,7 @@ nav a {
 }
 
 .boxerMenu a:hover {
-    color: #c9c8c8;
+    color: #4099f7;
 }
 
 .addBoxerForm {    
@@ -178,7 +186,8 @@ nav a {
     background-color: #4099f7;
     width: 300px;
     padding: 1em;
-    border: 3px solid;    
+    border: 3px solid;   
+    
 }
 
 .addBoxerForm button {
@@ -192,7 +201,7 @@ nav a {
     margin-bottom: 1em;    
 }
 .addBoxerForm button:hover{
-    opacity: 70%;
+    background-color: #222;
 }
 .addBoxerForm h1 {
     font-family: Arial, Helvetica, sans-serif;
@@ -229,9 +238,15 @@ nav a {
 }
 
 .modifyForm button:hover {
-    opacity: 80%;
+    background-color: #222;
 }
 .success{
+    margin-top: 2em;
+    text-align: center;
+    color: rgb(5, 88, 5);
+    font-size: large;
+}
+.failed{
     margin-top: 2em;
     text-align: center;
     color: rgb(180, 16, 16);
@@ -249,4 +264,56 @@ nav a {
     padding: 0.5em;
     padding-left: 1em;
     padding-right: 1em;
+}
+.editInList>a:hover{
+    background-color: #222;
+}
+footer{    
+    position: absolute;
+    bottom: 0;    
+    width: 100%;
+    height: 200px;
+    background-color: #333;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    text-align: center;  
+    padding: 0.1em;    
+}
+footer a{
+    text-decoration: none;
+    color: white;
+    font-weight: bolder;    
+}
+footer p:first-child{
+    font-weight: bolder;
+    margin-bottom: 0;
+    font-size: large;
+}
+footer a:last-child{
+    margin-bottom: 10px;
+}
+footer a:hover{
+    color: #4099f7;
+}
+
+/*Animations*/
+
+@keyframes navcolor {
+    0% {
+        color: black;
+    }
+
+    100% {
+        color: #4099f7;
+    }
+}
+@keyframes editButtonscolor {
+    0% {
+        color: black;
+    }
+
+    100% {
+        color: #035ec0;
+    }
 }

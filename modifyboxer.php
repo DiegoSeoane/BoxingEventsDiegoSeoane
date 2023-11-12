@@ -38,11 +38,12 @@
         $boxer->setLosses($_POST['losses']);
         $boxer->setDraws($_POST['draws']);
         $oper->updateBoxer($boxer);
+        echo '<p class="success">Modified</p>';
     } catch (PDOException $th) {
         $th->getMessage();
     }
     }
 }else{
-    echo 'dni no encontrado';
+    echo '<p class="failed">ID not found</p>';
 }
 ?>

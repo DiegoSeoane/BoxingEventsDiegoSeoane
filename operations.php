@@ -128,7 +128,7 @@ include('classes.php');
             return $event;
         }
         function deleteEvent($id){
-            $query = $this->conn->prepare('delete from Fight where eventID=?');
+            $query = $this->conn->prepare('delete from Event where eventID = ?');
             $query->execute([$id]);
             $deletedRows= $query->rowCount();
             return $deletedRows;

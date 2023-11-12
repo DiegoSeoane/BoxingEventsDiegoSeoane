@@ -9,6 +9,7 @@
 </head>
 
 <body>
+    <img src="https://plaam.s3.eu-central-1.amazonaws.com/despliegues/fgboxeo/logos/fgboxeo-only-logo-vertical.png" alt="fondo">
     <header>
         <nav>
             <a href="index.php"><img src="https://plaam.s3.eu-central-1.amazonaws.com/despliegues/fgboxeo/logos/fgboxeo-logo.png" alt="logoFederacion" class="logoFederacion"></a>
@@ -64,6 +65,15 @@
                 case 'modifyfight':
                     include('modifyfight.php');
                     break;
+                case 'editevent':
+                    include('editevent.php');
+                    break;
+                case 'addevent':
+                    include('addevent.php');
+                    break;
+                case 'modifyevent':
+                    include('modifyevent.php');
+                    break;
             }
         }
     } catch (PDOException $ex) {
@@ -77,6 +87,16 @@
         $oper->closeConnection();
     }
     ?>
+
+
 </body>
+<br>
+<footer>
+    <p>Contact</p>
+    <p>Email</p>
+    <a href="mailto:info@fgboxeo.org">info@fgboxeo.org</a>
+    <p>Phone</p>
+    <a href="tel:622099260">622099260</a>
+</footer>
 
 </html>

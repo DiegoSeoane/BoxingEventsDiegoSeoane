@@ -31,11 +31,12 @@ if (isset($_COOKIE['fightid'])) {
             $fight->setRedCorner($_POST['red']);
             $fight->setWinner($_POST['winner']);
             $oper->updateFight($fight);
+            echo '<p class="success">Modified</p>';
         } catch (PDOException $th) {
             $th->getMessage();
         }
     }
 } else {
-    echo 'ID no encontrado';
+    echo '<p class="failed">ID not found</p>';
 }
 ?>
