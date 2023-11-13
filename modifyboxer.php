@@ -1,3 +1,6 @@
+<?php
+    session_start();
+?>
 <div class="boxerMenu">
     <a href="index.php?load=editboxer">Edit Boxer</a>
     <a href="index.php?load=addboxer">Add Boxer</a>
@@ -6,19 +9,19 @@
 <form action="index.php?load=modifyboxer" method="post" class="addBoxerForm">
     <h1>Modify boxer</h1><br>
     <label for="idName">Name</label><br>
-    <input type="text" id="idName" name="name"><br>
+    <input type="text" id="idName" name="name" value="<?php echo $_SESSION['name']?>"><br>
     <br>
     <label for="idSurname">Surname</label><br>
-    <input type="text" id="idSurname" name="surname"><br>
+    <input type="text" id="idSurname" name="surname" value="<?php echo $_SESSION['surname']?>"><br>
     <br>
     <label for="idWins">Wins</label><br>
-    <input type="text" id="idWins" name="wins"><br>
+    <input type="text" id="idWins" name="wins" value="<?php echo $_SESSION['wins']?>"><br>
     <br>
     <label for="idLosses">Losses</label><br>
-    <input type="text" id="idLosses" name="losses"><br>
+    <input type="text" id="idLosses" name="losses" value="<?php echo $_SESSION['losses']?>"><br>
     <br>
     <label for="idDraws">Draws</label><br>
-    <input type="text" id="idDraws" name="draws"><br>
+    <input type="text" id="idDraws" name="draws" value="<?php echo $_SESSION['draws']?>"><br>
     <br><br>
     <button type="submit" name="submit">Modify</button>
 </form>

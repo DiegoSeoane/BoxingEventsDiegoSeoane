@@ -1,3 +1,6 @@
+<?php
+    session_start();
+?>
 <div class="boxerMenu">
     <a href="index.php?load=editfight">Edit Fight</a>
     <a href="index.php?load=addfight">Add Fight</a>
@@ -6,16 +9,16 @@
 <form action="index.php?load=modifyfight" method="post" class="addBoxerForm">
     <h1>Modify Fight</h1><br>
     <label for="idblue">Blue Corner</label><br>
-    <input type="text" id="idblue" name="blue">
+    <input type="text" id="idblue" name="blue" value="<?php echo $_SESSION['blue']?>">
     <br>
     <br>
     <label for="idred">Red Corner</label><br>
-    <input type="text" id="idred" name="red"><br>
+    <input type="text" id="idred" name="red" value="<?php echo $_SESSION['red']?>"><br>
     <br>
     <label for="idwinner">Winner</label><br>
-    <input type="text" id="idwinner" name="winner"><br>
+    <input type="text" id="idwinner" name="winner" value="<?php echo $_SESSION['winner']?>"><br>
     <br><br>
-    <button type="submit" name="submit">Add</button>
+    <button type="submit" name="submit">Modify</button>
 </form>
 
 <?php

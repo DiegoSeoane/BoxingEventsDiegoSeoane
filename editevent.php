@@ -10,6 +10,7 @@
     <button type="submit" name="delete">Delete</button>
 </form>
 <?php
+session_start();
 $oper->closeConnection();
 function display()
 {
@@ -38,6 +39,9 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         $eventid = $_POST['eventid'];
         setcookie('eventid', $eventid);
         $event = $oper->getEvent($_POST['eventid']);
+        $_SESSION['eventname'] = $event->getEventname();
+        $_SESSION['nfight'] = $event->getFights();
+        $_SESSION['specs'] = $event->getSpectators();
         if ($event != null) {
             echo '<br><table class="tabbox"> 
             <thead>

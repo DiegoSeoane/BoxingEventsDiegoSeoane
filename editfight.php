@@ -10,6 +10,7 @@
     <button type="submit" name="delete">Delete</button>
 </form>
 <?php
+session_start();
 $oper->closeConnection();
 function display()
 {
@@ -38,6 +39,9 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         $fightid = $_POST['fightid'];
         setcookie('fightid', $fightid);
         $fight = $oper->getFight($_POST['fightid']);
+        $_SESSION['blue'] = $fight->getBlueCorner();
+        $_SESSION['red'] = $fight->getRedCorner();
+        $_SESSION['winner'] = $fight->getWinner();
         if ($fight != null) {
             echo '<br><table class="tabbox"> 
             <thead>

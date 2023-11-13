@@ -10,6 +10,7 @@
         <button type="submit" name="delete">Delete</button>
     </form>
     <?php
+    session_start();
     $oper->closeConnection();
     function display()
     {
@@ -33,11 +34,16 @@
             display();
             $boxer = $oper->getBoxer($_POST['dni']);
         }
-        if (isset($_POST['submit'])) {
+        if (isset($_POST['submit'])) {            
             $oper->openConnection();
             $dniboxer = $_POST['dni'];
-            setcookie('dniboxer', $dniboxer);
+            setcookie('dniboxer', $dniboxer);            
             $boxer = $oper->getBoxer($_POST['dni']);
+            $_SESSION['name'] = $boxer->getName();
+            $_SESSION['surname'] = $boxer->getSurname();
+            $_SESSION['wins'] = $boxer->getWins();
+            $_SESSION['losses'] = $boxer->getLosses();
+            $_SESSION['draws'] = $boxer->getDraws();
             if ($boxer != null) {
 
 
