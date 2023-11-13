@@ -33,8 +33,7 @@ include('classes.php');
             $statement->execute([$dni,$name,$surname,$wins,$losses,$draws]);
             $numRows = $statement->rowCount();
             $this->conn->commit();
-            return $numRows;
-            
+            return $numRows;            
         }
         function getBoxer($dni){
             $query = $this->conn->prepare('select dni, name, surname, wins, losses, draws from Boxer where dni = ?');
@@ -43,7 +42,6 @@ include('classes.php');
             return $box;
         }
         function deleteBoxer($dni){            
-            echo $dni;
             $query = $this->conn->prepare('delete from Boxer where dni = ?');
             $query->execute([$dni]);            
             $deletedRows= $query->rowCount();

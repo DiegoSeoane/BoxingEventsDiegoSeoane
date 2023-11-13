@@ -24,26 +24,28 @@
 </form>
 
 <?php
-    if(isset($_COOKIE['dniboxer'])){
-    
-    if (isset($_POST['submit'])) {
+if ($_SERVER["REQUEST_METHOD"] === "POST") {
+    if (isset($_COOKIE['dniboxer'])) {
+
+        if (isset($_POST['submit'])) {
             $dniboxer = $_COOKIE['dniboxer'];
-    try {
-        $oper = new Operations();
-        $boxer = new Boxer();
-        $boxer->setDni($dniboxer);
-        $boxer->setName($_POST['name']);
-        $boxer->setSurname($_POST['surname']);
-        $boxer->setWins($_POST['wins']);
-        $boxer->setLosses($_POST['losses']);
-        $boxer->setDraws($_POST['draws']);
-        $oper->updateBoxer($boxer);
-        echo '<p class="success">Modified</p>';
-    } catch (PDOException $th) {
-        $th->getMessage();
+            try {
+                $oper = new Operations();
+                $boxer = new Boxer();
+                $boxer->setDni($dniboxer);
+                $boxer->setName($_POST['name']);
+                $boxer->setSurname($_POST['surname']);
+                $boxer->setWins($_POST['wins']);
+                $boxer->setLosses($_POST['losses']);
+                $boxer->setDraws($_POST['draws']);
+                $oper->updateBoxer($boxer);
+                echo '<p class="success">Modified</p>';
+            } catch (PDOException $th) {
+                $th->getMessage();
+            }
+        }
+    } else {
+        echo '<p class="failed">ID not found</p>';
     }
-    }
-}else{
-    echo '<p class="failed">ID not found</p>';
 }
 ?>

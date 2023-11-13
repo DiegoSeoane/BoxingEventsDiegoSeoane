@@ -19,24 +19,25 @@
 </form>
 
 <?php
-if (isset($_COOKIE['eventid'])) {
-
-    if (isset($_POST['submit'])) {
-        $eventid = $_COOKIE['eventid'];
-        try {
-            $oper = new Operations();
-            $event = new Event();
-            $event->setEventID($eventid);
-            $event->setEventname($_POST['evname']);
-            $event->setFights($_POST['nfights']);
-            $event->setSpectators($_POST['specs']);
-            $oper->updateEvent($event);
-            echo '<p class="success">Modified</p>';
-        } catch (PDOException $th) {
-            $th->getMessage();
+if ($_SERVER["REQUEST_METHOD"] === "POST") {
+    if (isset($_COOKIE['eventid'])) {
+        if (isset($_POST['submit'])) {
+            $eventid = $_COOKIE['eventid'];
+            try {
+                $oper = new Operations();
+                $event = new Event();
+                $event->setEventID($eventid);
+                $event->setEventname($_POST['evname']);
+                $event->setFights($_POST['nfights']);
+                $event->setSpectators($_POST['specs']);
+                $oper->updateEvent($event);
+                echo '<p class="success">Modified</p>';
+            } catch (PDOException $th) {
+                $th->getMessage();
+            }
         }
+    } else {
+        echo '<p class="failed">ID not found</p>';
     }
-} else {
-    echo '<p class="failed">ID not found</p>';
 }
 ?>

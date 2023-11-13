@@ -10,12 +10,13 @@
         <button type="submit" name="delete">Delete</button>
     </form>
     <?php
+    $oper->closeConnection();
     function display()
     {
         $numRow = 0;
         try {
             $oper = new Operations();
-            $numRow = $oper->deleteBoxer($_POST['dni']);  
+            $numRow = $oper->deleteBoxer($_POST['dni']);
         } catch (PDOException $ex) {
             echo $ex->getMessage();
         } catch (Exception $ex) {
@@ -24,20 +25,23 @@
         if ($numRow == 1) {
             echo '<p class="success">Eliminated</p>';
         } else {
-            echo '<p class="success">DNI not found</p>';
+            echo '<p class="failed">DNI not found</p>';
         }
     }
+    if ($_SERVER["REQUEST_METHOD"] === "POST") {
+        if (isset($_POST['delete'])) {
+            display();
+            $boxer = $oper->getBoxer($_POST['dni']);
+        }
+        if (isset($_POST['submit'])) {
+            $oper->openConnection();
+            $dniboxer = $_POST['dni'];
+            setcookie('dniboxer', $dniboxer);
+            $boxer = $oper->getBoxer($_POST['dni']);
+            if ($boxer != null) {
 
-    if (isset($_POST['delete'])) {
-        display();
-        $boxer = $oper->getBoxer($_POST['dni']);
-    }
-    if (isset($_POST['submit'])) {
 
-    $dniboxer = $_POST['dni'];
-    setcookie('dniboxer',$dniboxer);
-        $boxer = $oper->getBoxer($_POST['dni']);
-        echo '<br><table class="tabbox"> 
+                echo '<br><table class="tabbox"> 
             <thead>
                     <tr>
                         <th>Boxers</th>
@@ -65,8 +69,10 @@
                 </div>
         <br>
         ';
-    
+            } else {
+                echo '<p class="failed">Boxer not found</p>';
+            }
+        }
     }
-    
 
     ?>

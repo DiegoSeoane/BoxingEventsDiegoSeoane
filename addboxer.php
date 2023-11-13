@@ -39,12 +39,12 @@ function display()
         $boxer->setSurname($_POST['surname']);
         $boxer->setWins($_POST['wins']);
         $boxer->setLosses($_POST['losses']);
-        $boxer->setDraws($_POST['draws']);        
+        $boxer->setDraws($_POST['draws']);
         $numRow = $oper->addBoxer($boxer);
         if ($numRow == 1) {
-            echo '<p>Added successfully</p>';
+            echo '<p class="success">Added successfully</p>';
         } else {
-            echo '<p>Error</p>';
+            echo '<p class="failed">Error</p>';
         }
     } catch (PDOException $ex) {
         echo $ex->getMessage();
@@ -52,7 +52,9 @@ function display()
         echo $ex->getMessage();
     }
 }
-if (isset($_POST['submit'])) {
-    display();
+if ($_SERVER["REQUEST_METHOD"] === "POST") {
+    if (isset($_POST['submit'])) {
+        display();
+    }
 }
 ?>

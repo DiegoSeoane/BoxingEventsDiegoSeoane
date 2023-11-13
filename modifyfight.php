@@ -19,24 +19,26 @@
 </form>
 
 <?php
-if (isset($_COOKIE['fightid'])) {
+if ($_SERVER["REQUEST_METHOD"] === "POST") {
+    if (isset($_COOKIE['fightid'])) {
 
-    if (isset($_POST['submit'])) {
-        $fightid = $_COOKIE['fightid'];
-        try {
-            $oper = new Operations();
-            $fight = new Fight();
-            $fight->setFightID($fightid);
-            $fight->setBlueCorner($_POST['blue']);
-            $fight->setRedCorner($_POST['red']);
-            $fight->setWinner($_POST['winner']);
-            $oper->updateFight($fight);
-            echo '<p class="success">Modified</p>';
-        } catch (PDOException $th) {
-            $th->getMessage();
+        if (isset($_POST['submit'])) {
+            $fightid = $_COOKIE['fightid'];
+            try {
+                $oper = new Operations();
+                $fight = new Fight();
+                $fight->setFightID($fightid);
+                $fight->setBlueCorner($_POST['blue']);
+                $fight->setRedCorner($_POST['red']);
+                $fight->setWinner($_POST['winner']);
+                $oper->updateFight($fight);
+                echo '<p class="success">Modified</p>';
+            } catch (PDOException $th) {
+                $th->getMessage();
+            }
         }
+    } else {
+        echo '<p class="failed">ID not found</p>';
     }
-} else {
-    echo '<p class="failed">ID not found</p>';
 }
 ?>

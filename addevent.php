@@ -14,7 +14,7 @@
     <input type="text" id="nfights" name="nfights"><br>
     <br>
     <label for="specs">Spectators</label><br>
-    <input type="text" id="specs" name="specs"><br>    
+    <input type="text" id="specs" name="specs"><br>
     <br><br>
     <button type="submit" name="submit">Add</button>
 </form>
@@ -26,12 +26,12 @@ function display()
         $event = new Event();
         $event->setEventname($_POST['evname']);
         $event->setFights($_POST['nfights']);
-        $event->setSpectators($_POST['specs']);    
+        $event->setSpectators($_POST['specs']);
         $numRow = $oper->addEvent($event);
         if ($numRow == 1) {
-            echo '<p>Added successfully</p>';
+            echo '<p class="success">Added successfully</p>';
         } else {
-            echo '<p>Error</p>';
+            echo '<p class="failed">Error</p>';
         }
     } catch (PDOException $ex) {
         echo $ex->getMessage();
@@ -39,7 +39,9 @@ function display()
         echo $ex->getMessage();
     }
 }
-if (isset($_POST['submit'])) {
-    display();
+if ($_SERVER["REQUEST_METHOD"] === "POST") {
+    if (isset($_POST['submit'])) {
+        display();
+    }
 }
 ?>

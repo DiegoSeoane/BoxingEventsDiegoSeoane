@@ -1,7 +1,7 @@
 <div class="boxerMenu">
-        <a href="index.php?load=editfight">Edit Fight</a>
-        <a href="index.php?load=addfight">Add Fight</a>
-    </div>
+    <a href="index.php?load=editfight">Edit Fight</a>
+    <a href="index.php?load=addfight">Add Fight</a>
+</div>
 <br>
 <form method="post" action="index.php?load=addfight" class="addBoxerForm">
 
@@ -14,7 +14,7 @@
     <input type="text" id="idred" name="red"><br>
     <br>
     <label for="idwinner">Winner</label><br>
-    <input type="text" id="idwinner" name="winner"><br>    
+    <input type="text" id="idwinner" name="winner"><br>
     <br><br>
     <button type="submit" name="submit">Add</button>
 </form>
@@ -26,12 +26,12 @@ function display()
         $fight = new Fight();
         $fight->setBlueCorner($_POST['blue']);
         $fight->setRedCorner($_POST['red']);
-        $fight->setWinner($_POST['winner']);    
+        $fight->setWinner($_POST['winner']);
         $numRow = $oper->addFight($fight);
         if ($numRow == 1) {
-            echo '<p>Added successfully</p>';
+            echo '<p class="success">Added successfully</p>';
         } else {
-            echo '<p>Error</p>';
+            echo '<p class="failed">Error</p>';
         }
     } catch (PDOException $ex) {
         echo $ex->getMessage();
@@ -39,7 +39,9 @@ function display()
         echo $ex->getMessage();
     }
 }
-if (isset($_POST['submit'])) {
-    display();
+if ($_SERVER["REQUEST_METHOD"] === "POST") {
+    if (isset($_POST['submit'])) {
+        display();
+    }
 }
 ?>

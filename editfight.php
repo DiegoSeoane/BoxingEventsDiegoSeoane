@@ -10,6 +10,7 @@
     <button type="submit" name="delete">Delete</button>
 </form>
 <?php
+$oper->closeConnection();
 function display()
 {
     $numRow = 0;
@@ -27,17 +28,18 @@ function display()
         echo '<p class="success">ID not found</p>';
     }
 }
-
-if (isset($_POST['delete'])) {
-    display();
-    $fight = $oper->getFight($_POST['fightid']);
-}
-if (isset($_POST['submit'])) {
-
-    $fightid = $_POST['fightid'];
-    setcookie('fightid', $fightid);
-    $fight = $oper->getFight($_POST['fightid']);
-    echo '<br><table class="tabbox"> 
+if ($_SERVER["REQUEST_METHOD"] === "POST") {
+    if (isset($_POST['delete'])) {
+        display();
+        $fight = $oper->getFight($_POST['fightid']);
+    }
+    if (isset($_POST['submit'])) {
+        $oper->openConnection();
+        $fightid = $_POST['fightid'];
+        setcookie('fightid', $fightid);
+        $fight = $oper->getFight($_POST['fightid']);
+        if ($fight != null) {
+            echo '<br><table class="tabbox"> 
             <thead>
                 <tr>
                     <th>Blue Corner</th>
@@ -61,7 +63,10 @@ if (isset($_POST['submit'])) {
                 </div>
         <br>
         ';
+        } else {
+            echo '<p class="failed">Fight not found</p>';
+        }
+    }
 }
-
 
 ?>

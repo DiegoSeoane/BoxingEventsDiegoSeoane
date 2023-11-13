@@ -10,6 +10,7 @@
     <button type="submit" name="delete">Delete</button>
 </form>
 <?php
+$oper->closeConnection();
 function display()
 {
     $numRow = 0;
@@ -27,17 +28,18 @@ function display()
         echo '<p class="failed">ID not found</p>';
     }
 }
-
-if (isset($_POST['delete'])) {    
-    display();    
-    $event = $oper->getEvent($_POST['eventid']);
-}
-if (isset($_POST['submit'])) {
-
-    $eventid = $_POST['eventid'];
-    setcookie('eventid', $eventid);
-    $event = $oper->getEvent($_POST['eventid']);
-    echo '<br><table class="tabbox"> 
+if ($_SERVER["REQUEST_METHOD"] === "POST") {
+    if (isset($_POST['delete'])) {
+        display();
+        $event = $oper->getEvent($_POST['eventid']);
+    }
+    if (isset($_POST['submit'])) {
+        $oper->openConnection();
+        $eventid = $_POST['eventid'];
+        setcookie('eventid', $eventid);
+        $event = $oper->getEvent($_POST['eventid']);
+        if ($event != null) {
+            echo '<br><table class="tabbox"> 
             <thead>
                 <tr>
                     <th>Name</th>
@@ -62,6 +64,10 @@ if (isset($_POST['submit'])) {
                 </div>
         <br>
         ';
+        } else {
+            echo '<p class="failed">Event not found</p>';
+        }
+    }
 }
 
 
