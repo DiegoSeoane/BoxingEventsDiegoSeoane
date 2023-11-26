@@ -12,25 +12,29 @@ include('classes.php');
         }
 
         function addBoxer(array $data){
-            $sql = "INSERT INTO Boxer (name, size, is_available) VALUES(:name, :size, :is_available)";
+            $sql = "INSERT INTO Boxer (dni, name, surname, wins, losses, draws) 
+            VALUES(:dni, :name, :surname, :wins, :losses, :draws)";
 
             $stmt = $this->conn->prepare($sql);
-    
+            
+            $stmt->bindValue(":dni", $data["dni"], PDO::PARAM_STR);
             $stmt->bindValue(":name", $data["name"], PDO::PARAM_STR);
-            $stmt->bindValue(":size", $data["size"] ?? 0, PDO::PARAM_INT);
-            $stmt->bindValue(":is_available", (bool) ($data["is_available"] ?? false), PDO::PARAM_BOOL);
+            $stmt->bindValue(":surname", $data["surname"], PDO::PARAM_STR);
+            $stmt->bindValue(":wins", $data["wins"], PDO::PARAM_INT);
+            $stmt->bindValue(":losses", $data["losses"], PDO::PARAM_INT);
+            $stmt->bindValue(":draws", $data["draws"], PDO::PARAM_INT);            
     
             $stmt->execute();
     
             return $this->conn->lastInsertId();       
         } 
-        function getBoxer($dni): array | false
+        function getBoxer($dni)
         {
             $sql = "SELECT * FROM Boxer WHERE dni = :dni";
             $stmt = $this->conn->prepare($sql);
-            $stmt->bindValue(":dni", $dni, PDO::PARAM_INT);
+            $stmt->bindValue(":dni", $dni, PDO::PARAM_STR);
             $stmt->execute();
-            $data = $stmt->fetch(PDO::FETCH_ASSOC);
+            $data = $stmt->fetch(PDO::FETCH_ASSOC);               
             return $data;
         } 
         function deleteBoxer($dni){
@@ -39,7 +43,7 @@ include('classes.php');
     
             $stmt = $this->conn->prepare($sql);
     
-            $stmt->bindValue(":dni", $dni, PDO::PARAM_INT);
+            $stmt->bindValue(":dni", $dni, PDO::PARAM_STR);
     
             $stmt->execute();
     
@@ -48,8 +52,7 @@ include('classes.php');
         function updateBoxer(array $current, $new):int{
             $sql = "UPDATE Boxer
             SET name = :name, surname = :surname, wins = :wins, losses = :losses, draws = :draws
-            WHERE dni = :dni";
-            $new = $new->jsonSerialize();
+            WHERE dni = :dni";            
         $stmt = $this->conn->prepare($sql);
         $stmt->bindValue(":dni", $new["dni"] ?? $current["dni"], PDO::PARAM_STR);
         $stmt->bindValue(":name", $new["name"] ?? $current["name"], PDO::PARAM_STR);

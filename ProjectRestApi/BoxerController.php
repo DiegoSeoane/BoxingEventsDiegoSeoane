@@ -19,7 +19,7 @@ class BoxerController
 
     private function processResourceRequest(string $method, string $dni): void
     {
-        $boxer = $this->operations->getBoxer($dni);
+        $boxer = $this->operations->getBoxer($dni);        
 
         if (!$boxer) {
             http_response_code(404);
@@ -34,13 +34,7 @@ class BoxerController
 
             case "PATCH":
                 $data = (array) json_decode(file_get_contents("php://input"), true);
-                $boxer = new Boxer();
-                $boxer->setDni($dni);
-                $boxer->setName($data['name']);
-                $boxer->setSurname($data['surname']);
-                $boxer->setWins($data['wins']);
-                $boxer->setLosses($data['losses']);
-                $boxer->setDraws($data['draws']);
+                
                 $errors = $this->getValidationErrors($data, false);
 
                 if (!empty($errors)) {
@@ -48,8 +42,8 @@ class BoxerController
                     echo json_encode(["errors" => $errors]);
                     break;
                 }
-
-                $rows = $this->operations->updateBoxer($boxer);
+                
+                $rows = $this->operations->updateBoxer($boxer, $data);
 
                 echo json_encode([
                     "message" => "Boxer $dni updated",
@@ -95,7 +89,7 @@ class BoxerController
                 http_response_code(201);
                 echo json_encode([
                     "message" => "Boxer created",
-                    "id" => $dni
+                    "dni" => $dni
                 ]);
                 break;
 

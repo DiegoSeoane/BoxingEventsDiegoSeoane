@@ -18,12 +18,12 @@ if ($parts[1] != "ProjectRestApi") {
     exit;
 }
 
-$id = $parts[2] ?? null;
+$dni = $parts[2] ?? null;
 
 $database = new Database("localhost", 'boxingevents', 'boxeruser', 'abc123.');
 $operation = new Operations($database);
 $controller = new BoxerController($operation);
-$controller->processRequest($_SERVER["REQUEST_METHOD"], $id);
+$controller->processRequest($_SERVER["REQUEST_METHOD"], $dni);
 
 
 ?>
